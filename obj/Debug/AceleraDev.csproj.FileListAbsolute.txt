@@ -1,0 +1,9 @@
+C:\Users\Matheus Eufrásio\source\repos\AceleraDev\obj\Debug\AceleraDev.csprojAssemblyReference.cache
+C:\Users\Matheus Eufrásio\source\repos\AceleraDev\bin\Debug\AceleraDev.exe.config
+C:\Users\Matheus Eufrásio\source\repos\AceleraDev\bin\Debug\AceleraDev.exe
+C:\Users\Matheus Eufrásio\source\repos\AceleraDev\bin\Debug\AceleraDev.pdb
+C:\Users\Matheus Eufrásio\source\repos\AceleraDev\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Matheus Eufrásio\source\repos\AceleraDev\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Matheus Eufrásio\source\repos\AceleraDev\obj\Debug\AceleraDev.csproj.CopyComplete
+C:\Users\Matheus Eufrásio\source\repos\AceleraDev\obj\Debug\AceleraDev.exe
+C:\Users\Matheus Eufrásio\source\repos\AceleraDev\obj\Debug\AceleraDev.pdb
