@@ -15,6 +15,7 @@ namespace AceleraDev
     class Program
     {
         static string url = "https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=2f495d80465d9040c4a2037999b6a321746e7fa4";
+        static string urlFinal = "https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=2f495d80465d9040c4a2037999b6a321746e7fa4";
         static string path = @"C:\Users\Matheus Eufrásio\source\repos\AceleraDev\ArquivosGerados/answer.json";
         static string fraseJson;
         static HttpClient httpClient = new HttpClient();
@@ -28,8 +29,9 @@ namespace AceleraDev
             criptografiaJson.AtualizaJson(path, criptografiaJson.decifrado, criptografiaJson.resumo_criptografico);
             //criptografiaJson.EnviarArquivoParaAPI();
 
+
             var content = new MultipartFormDataContent();
-            httpClient.BaseAddress = new Uri(url);
+            httpClient.BaseAddress = new Uri(urlFinal);
 
             var fileContent1 = new ByteArrayContent(File.ReadAllBytes(path));
 
