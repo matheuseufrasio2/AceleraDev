@@ -16,42 +16,39 @@ namespace AceleraDev
     {
         static string url = "https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=2f495d80465d9040c4a2037999b6a321746e7fa4";
         static string urlFinal = "https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=2f495d80465d9040c4a2037999b6a321746e7fa4";
-        static string path = @"C:\Users\Matheus Eufrásio\source\repos\AceleraDev\ArquivosGerados/answer.json";
+        static string path = @"C:\Users\Matheus Eufrásio\source\repos\AceleraDev\ArquivosGerados\answer.json";
         static string fraseJson;
         static HttpClient httpClient = new HttpClient();
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            fraseJson =  GetJson(url);
+            fraseJson = GetJson(url);
             GerarArquivoJson(path, fraseJson);
             CriptografiaJson criptografiaJson = JsonConvert.DeserializeObject<CriptografiaJson>(fraseJson);
             criptografiaJson.GeraDecifradoJson(criptografiaJson.numero_casas, criptografiaJson.cifrado);
             criptografiaJson.GeraResumoCriptografico(criptografiaJson.decifrado);
             criptografiaJson.AtualizaJson(path, criptografiaJson.decifrado, criptografiaJson.resumo_criptografico);
-            //criptografiaJson.EnviarArquivoParaAPI();
 
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(urlFinal);
+                using (var content = new MultipartFormDataContent("answer"))
+                {
+                    content.Add(new StreamContent(new MemoryStream(File.ReadAllBytes(path))), "answer", "answer.json");
 
-            var content = new MultipartFormDataContent();
-            httpClient.BaseAddress = new Uri(urlFinal);
+                    using (var message = client.PostAsync("", content))
+                    {
+                        Console.WriteLine("Status: " + message.Result.StatusCode);
 
-            var fileContent1 = new ByteArrayContent(File.ReadAllBytes(path));
+                        var input = message.Result.Content.ReadAsStringAsync();
 
-            fileContent1.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") { 
-                FileName = "answer"
-            };
-
-            content.Add(fileContent1);
-
-            var result = httpClient.PostAsync("file/upload", content).Result;
-
-            Console.WriteLine("Status: " + result.StatusCode);
-
-
-            Console.ReadLine();
+                        Console.ReadLine();
+                    }
+                }
+            }
         }
 
 
-
-        static string GetJson(string url)
+        private static string GetJson(string url)
         {
             try
             {
