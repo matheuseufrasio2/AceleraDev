@@ -42,6 +42,7 @@ namespace AceleraDev
                         var input = message.Result.Content.ReadAsStringAsync();
 
                         Console.ReadLine();
+                    
                     }
                 }
             }

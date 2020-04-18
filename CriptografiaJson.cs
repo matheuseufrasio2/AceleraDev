@@ -58,7 +58,7 @@ namespace AceleraDev
                 byte[] buffer = Encoding.Default.GetBytes(decodificado);
                 SHA1CryptoServiceProvider cryptoTransformSHA1 = new SHA1CryptoServiceProvider();
                 string hash = BitConverter.ToString(cryptoTransformSHA1.ComputeHash(buffer)).Replace("-", "");
-                resumo_criptografico = hash;
+                resumo_criptografico = hash.ToLower();
                 Console.WriteLine($"Resumo da Criptografia feito: {resumo_criptografico}");
             }
             catch (Exception x)
